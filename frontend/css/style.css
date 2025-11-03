@@ -1,0 +1,233 @@
+:root {
+    --bg-color: #f8f9fc;
+    --card-bg: #ffffff;
+    --text-color: #5a5c69;
+    --border-color: #e3e6f0;
+    --header-bg: #f8f9fc;
+    --muted-color: #858796;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --card-bg: #2d3748;
+    --text-color: #e2e8f0;
+    --border-color: #4a5568;
+    --header-bg: #2d3748;
+    --muted-color: #a0aec0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card {
+    border: none;
+    border-radius: 0.35rem;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.card .card-header {
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
+}
+
+.border-left-success {
+    border-left: 0.25rem solid #1cc88a !important;
+}
+
+.border-left-info {
+    border-left: 0.25rem solid #36b9cc !important;
+}
+
+.border-left-warning {
+    border-left: 0.25rem solid #f6c23e !important;
+}
+
+.shadow {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+}
+
+[data-theme="dark"] .shadow {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.text-xs {
+    font-size: 0.7rem;
+}
+
+.text-gray-800 {
+    color: var(--text-color) !important;
+}
+
+.text-gray-300 {
+    color: var(--border-color) !important;
+}
+
+.text-muted {
+    color: var(--muted-color) !important;
+}
+
+.table {
+    color: var(--text-color);
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: var(--text-color);
+    background-color: var(--header-bg);
+}
+
+.table td {
+    border-color: var(--border-color);
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+.chart-pie, .chart-bar {
+    position: relative;
+    height: 200px;
+}
+
+/* Status badges */
+.badge-pending {
+    background-color: #f6c23e;
+    color: #fff;
+}
+
+.badge-approved {
+    background-color: #1cc88a;
+    color: #fff;
+}
+
+.badge-rejected {
+    background-color: #e74a3b;
+    color: #fff;
+}
+
+.badge-active {
+    background-color: #1cc88a;
+    color: #fff;
+}
+
+.badge-inactive {
+    background-color: #858796;
+    color: #fff;
+}
+
+.badge-resolved {
+    background-color: #1cc88a;
+    color: #fff;
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: var(--text-color);
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #4e73df;
+    border-color: #4e73df;
+}
+
+.pagination .page-link:hover {
+    color: var(--text-color);
+    background-color: var(--border-color);
+    border-color: var(--border-color);
+}
+
+/* Theme transition for smooth switching */
+.stats-card, .table, .form-control, .dropdown-menu {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Dark theme specific styles */
+[data-theme="dark"] .form-control {
+    background-color: #4a5568;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .form-control:focus {
+    background-color: #4a5568;
+    border-color: #4299e1;
+    color: #e2e8f0;
+    box-shadow: 0 0 0 0.2rem rgba(66, 153, 225, 0.25);
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: #2d3748;
+    border-color: #4a5568;
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background-color: #4a5568;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .btn-outline-secondary {
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover {
+    background-color: #4a5568;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+/* Fix for navbar in dark theme */
+[data-theme="dark"] .navbar-dark .navbar-brand,
+[data-theme="dark"] .navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Fix for dropdown toggle in dark theme */
+[data-theme="dark"] .btn-outline-light {
+    color: #e2e8f0;
+    border-color: #4a5568;
+}
+
+[data-theme="dark"] .btn-outline-light:hover {
+    background-color: #4a5568;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+/* Fix for text colors in cards */
+[data-theme="dark"] .text-primary {
+    color: #63b3ed !important;
+}
+
+[data-theme="dark"] .text-success {
+    color: #68d391 !important;
+}
+
+[data-theme="dark"] .text-info {
+    color: #76e4f7 !important;
+}
+
+[data-theme="dark"] .text-warning {
+    color: #faf089 !important;
+}
+
+[data-theme="dark"] .text-danger {
+    color: #fc8181 !important;
+}

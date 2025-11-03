@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating Bot Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-heart me-2"></i>Dating Bot Admin
+            </a>
+            
+            <div class="d-flex align-items-center">
+                <!-- Date Filter -->
+                <div class="dropdown me-3">
+                    <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="dateFilterDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-calendar me-1"></i>
+                        <span id="current-date-range">Last 7 Days</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item date-filter" data-range="today">Today</a></li>
+                        <li><a class="dropdown-item date-filter" data-range="yesterday">Yesterday</a></li>
+                        <li><a class="dropdown-item date-filter" data-range="last7">Last 7 Days</a></li>
+                        <li><a class="dropdown-item date-filter" data-range="last30">Last 30 Days</a></li>
+                        <li><a class="dropdown-item date-filter" data-range="last90">Last 90 Days</a></li>
+                        <li><a class="dropdown-item date-filter" data-range="thisMonth">This Month</a></li>
+                        <li><a class="dropdown-item date-filter" data-range="lastMonth">Last Month</a></li>
+                        <li><a class="dropdown-item date-filter" data-range="thisYear">This Year</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Theme Switcher -->
+                <div class="form-check form-switch me-3">
+                    <input class="form-check-input" type="checkbox" id="themeSwitch">
+                    <label class="form-check-label text-light" for="themeSwitch">
+                        <i class="fas fa-moon"></i>
+                    </label>
+                </div>
+                
+                <!-- User Menu -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle me-1"></i>Admin
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#" id="logout-btn">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <!-- Stats Cards -->
+        <div class="row" id="stats-section">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stats-card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Total Users</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-users">0</div>
+                                <div class="mt-2 text-xs">
+                                    <span class="text-success me-2" id="user-change">
+                                        <i class="fas fa-arrow-up"></i> 0%
+                                    </span>
+                                    <span class="text-muted">Since last period</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stats-card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Active Users</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="active-users">0</div>
+                                <div class="mt-2 text-xs">
+                                    <span class="text-success me-2" id="active-change">
+                                        <i class="fas fa-arrow-up"></i> 0%
+                                    </span>
+                                    <span class="text-muted">Since last period</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-user-check fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stats-card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    Total Matches</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-matches">0</div>
+                                <div class="mt-2 text-xs">
+                                    <span class="text-success me-2" id="matches-change">
+                                        <i class="fas fa-arrow-up"></i> 0%
+                                    </span>
+                                    <span class="text-muted">Since last period</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-heart fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stats-card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Pending Payments</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="pending-payments">0</div>
+                                <div class="mt-2 text-xs">
+                                    <span class="text-success me-2" id="payments-change">
+                                        <i class="fas fa-arrow-up"></i> 0%
+                                    </span>
+                                    <span class="text-muted">Since last period</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-money-bill-wave fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row">
+            <!-- Gender Distribution Chart -->
+            <div class="col-xl-6 col-lg-6">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                        <h6 class="m-0 font-weight-bold text-primary">Gender Distribution</h6>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-filter me-1"></i>Filter
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item chart-filter" data-chart="gender" data-range="all">All Time</a></li>
+                                <li><a class="dropdown-item chart-filter" data-chart="gender" data-range="last7">Last 7 Days</a></li>
+                                <li><a class="dropdown-item chart-filter" data-chart="gender" data-range="last30">Last 30 Days</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-pie pt-4 pb-2">
+                            <canvas id="genderChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Registration Chart -->
+            <div class="col-xl-6 col-lg-6">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                        <h6 class="m-0 font-weight-bold text-primary">User Registrations</h6>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-filter me-1"></i>Last 7 Days
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item chart-filter" data-chart="registrations" data-range="last7">Last 7 Days</a></li>
+                                <li><a class="dropdown-item chart-filter" data-chart="registrations" data-range="last30">Last 30 Days</a></li>
+                                <li><a class="dropdown-item chart-filter" data-chart="registrations" data-range="last90">Last 90 Days</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-bar pt-4 pb-2">
+                            <canvas id="registrationChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Section -->
+        <div class="row" id="users-section">
+            <div class="col-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                        <h6 class="m-0 font-weight-bold text-primary">Users Overview</h6>
+                        <div>
+                            <div class="input-group input-group-sm me-2 d-inline-flex w-auto">
+                                <input type="text" class="form-control" placeholder="Search users..." id="user-search">
+                                <button class="btn btn-outline-secondary" type="button" id="search-users-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="usersTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>Username</th>
+                                        <th>Name</th>
+                                        <th>Gender</th>
+                                        <th>City</th>
+                                        <th>Coins</th>
+                                        <th>Status</th>
+                                        <th>Registered</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-table-body">
+                                    <!-- Users will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Users Pagination -->
+                        <nav aria-label="Users pagination">
+                            <ul class="pagination justify-content-center mt-3" id="users-pagination">
+                                <!-- Pagination will be generated here -->
+                            </ul>
+                        </nav>
+                        <div class="text-center text-muted mt-2">
+                            Showing <span id="users-start">0</span>-<span id="users-end">0</span> of <span id="users-total">0</span> users
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payments Section -->
+        <div class="row" id="payments-section">
+            <div class="col-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                        <h6 class="m-0 font-weight-bold text-primary">Payment Requests</h6>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-filter me-1"></i>Status
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item payment-filter" data-status="all">All</a></li>
+                                <li><a class="dropdown-item payment-filter" data-status="pending">Pending</a></li>
+                                <li><a class="dropdown-item payment-filter" data-status="approved">Approved</a></li>
+                                <li><a class="dropdown-item payment-filter" data-status="rejected">Rejected</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="paymentsTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Payment ID</th>
+                                        <th>User</th>
+                                        <th>Package</th>
+                                        <th>Coins</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="payments-table-body">
+                                    <!-- Payments will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Payments Pagination -->
+                        <nav aria-label="Payments pagination">
+                            <ul class="pagination justify-content-center mt-3" id="payments-pagination">
+                                <!-- Pagination will be generated here -->
+                            </ul>
+                        </nav>
+                        <div class="text-center text-muted mt-2">
+                            Showing <span id="payments-start">0</span>-<span id="payments-end">0</span> of <span id="payments-total">0</span> payments
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complaints Section -->
+        <div class="row" id="complaints-section">
+            <div class="col-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                        <h6 class="m-0 font-weight-bold text-primary">User Complaints</h6>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-filter me-1"></i>Status
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item complaint-filter" data-status="all">All</a></li>
+                                <li><a class="dropdown-item complaint-filter" data-status="pending">Pending</a></li>
+                                <li><a class="dropdown-item complaint-filter" data-status="resolved">Resolved</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="complaintsTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Complaint ID</th>
+                                        <th>User ID</th>
+                                        <th>Type</th>
+                                        <th>Reported User</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="complaints-table-body">
+                                    <!-- Complaints will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Complaints Pagination -->
+                        <nav aria-label="Complaints pagination">
+                            <ul class="pagination justify-content-center mt-3" id="complaints-pagination">
+                                <!-- Pagination will be generated here -->
+                            </ul>
+                        </nav>
+                        <div class="text-center text-muted mt-2">
+                            Showing <span id="complaints-start">0</span>-<span id="complaints-end">0</span> of <span id="complaints-total">0</span> complaints
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap & Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

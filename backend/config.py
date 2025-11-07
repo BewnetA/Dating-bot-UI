@@ -5,7 +5,7 @@ load_dotenv()
 
 class Settings:
     # MongoDB Configuration
-    MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017/")
+    MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27018/")
     DATABASE_NAME = os.getenv("DATABASE_NAME", "dating_bot")
     
     # JWT Configuration

@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = 'http://tinderbot.pro.et:8000';
+const API_BASE_URL = 'https://tinderbot.pro.et:8000';
 let authToken = localStorage.getItem('authToken');
 
 // Pagination settings
